@@ -2,8 +2,13 @@
 {
     public class Floor
     {
-        public int FloorID { get; set; }
-        public required string ParkID { get; set; }
-        public required int FloorNumber { get; set; }
+        public Guid ID { get; private set; }
+        public Guid ParkID { get; set; }
+        public int Number { get; set; }
+
+        public Floor() 
+        {
+            ID = Guid.NewGuid();
+        }
     }
 }

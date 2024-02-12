@@ -2,9 +2,14 @@
 {
     public class Transaction
     {
-        public int TransactionID { get; set; }
-        public required int CustomerID { get; set; }
-        public required decimal Value { get; set; }
-        public required DateTime TransactionDateTime { get; set; }
+        public Guid ID { get; private set; }
+        public Guid CustomerID { get; set; }
+        public decimal Value { get; set; }
+        public DateTime Date { get; set; }
+
+        public Transaction()
+        {
+            ID = Guid.NewGuid();
+        }
     }
 }

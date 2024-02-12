@@ -4,16 +4,18 @@ namespace ParkNet_Ricardo.Campos.Entities
 {
     public class Customer
     {
-        public int CustomerID { get; set; }
-        public required string CustomerName { get; set; }
+        public Guid ID { get; private set; }
+        public string? Name { get; set; }
+        public string DriversLicense { get; set; }
+        public string BankCard { get; set; }
+        public string Email { get; set; }
+        public decimal Balance { get; set; }
 
-       // [String]
-        public required string DriversLicense { get; set; }
+        public Customer()
+        {
+            ID = Guid.NewGuid();
+        }
+        
 
-        public required string BankCard { get; set; }
-
-        public required string Email { get; set; }
-
-        public required decimal Balance { get; set; }
     }
 }

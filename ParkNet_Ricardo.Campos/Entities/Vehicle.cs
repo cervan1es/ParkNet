@@ -1,10 +1,17 @@
-﻿namespace ParkNet_Ricardo.Campos.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ParkNet_Ricardo.Campos.Entities
 {
     public class Vehicle
     {
-        public int VehicleID { get; set; }
-        public required string CustomerID { get; set; }
-        public required string Type { get; set; }
-        public required string Plate { get; set; }       
+        public Guid ID { get; set; }
+        public Guid CustomerID { get; set; }
+        public string Type { get; set; }
+        public string Plate { get; set; }    
+
+        public Vehicle()
+        {
+            ID = Guid.NewGuid();
+        }
     }
 }

@@ -2,13 +2,16 @@
 {
     public class Permit
     {
-        public int PermitID { get; set; }
-        public required int VehicleID { get; set; }
-
-        public required int ParkingSpaceID { get; set; }
-        public required DateTime StartDate { get; set; }
+        public Guid ID { get; private set; }
+        public Guid VehicleID { get; set; }
+        public Guid ParkingSpaceID { get; set; }
+        public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public decimal PermitPrice { get; set; }
+        public decimal Price { get; set; }
 
+        public Permit()
+        {
+            ID = Guid.NewGuid();
+        }
     }
 }
