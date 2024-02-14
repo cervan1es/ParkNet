@@ -1,4 +1,4 @@
-﻿namespace ParkNet_Ricardo.Campos.Entities
+﻿namespace ParkNet_Ricardo.Campos.Data.Entities
 {
     public class Permit
     {

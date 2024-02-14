@@ -1,4 +1,4 @@
-﻿namespace ParkNet_Ricardo.Campos.Entities
+﻿namespace ParkNet_Ricardo.Campos.Data.Entities
 {
     public class Floor
     {
@@ -6,7 +6,7 @@
         public Guid ParkID { get; set; }
         public int Number { get; set; }
 
-        public Floor() 
+        public Floor()
         {
             ID = Guid.NewGuid();
         }

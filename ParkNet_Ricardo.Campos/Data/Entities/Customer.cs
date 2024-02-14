@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace ParkNet_Ricardo.Campos.Entities
+namespace ParkNet_Ricardo.Campos.Data.Entities
 {
     public class Customer
     {
@@ -15,7 +15,7 @@ namespace ParkNet_Ricardo.Campos.Entities
         {
             ID = Guid.NewGuid();
         }
-        
+
 
     }
 }

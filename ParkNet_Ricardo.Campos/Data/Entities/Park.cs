@@ -1,12 +1,11 @@
-﻿namespace ParkNet_Ricardo.Campos.Entities
+﻿namespace ParkNet_Ricardo.Campos.Data.Entities
 {
-    public class ParkingSpace
+    public class Park
     {
         public Guid ID { get; private set; }
-        public Guid FloorID { get; set; }
         public string Name { get; set; }
 
-        public ParkingSpace()
+        public Park()
         {
             ID = Guid.NewGuid();
         }

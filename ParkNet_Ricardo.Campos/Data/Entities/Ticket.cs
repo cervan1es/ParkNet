@@ -1,4 +1,4 @@
-﻿namespace ParkNet_Ricardo.Campos.Entities
+﻿namespace ParkNet_Ricardo.Campos.Data.Entities
 {
     public class Ticket
     {
@@ -9,7 +9,7 @@
         public DateTime CheckOut { get; set; }
         public decimal TicketlPrice { get; set; }
 
-        public Ticket ()
+        public Ticket()
         {
             ID = Guid.NewGuid();
         }
