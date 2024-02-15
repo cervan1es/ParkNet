@@ -11,6 +11,7 @@ namespace ParkNet_Ricardo.Campos.Data
             : base(options)
         {
         }
+
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Floor> Floor { get; set; }
         public DbSet<Park> Park { get; set; }
@@ -19,5 +20,7 @@ namespace ParkNet_Ricardo.Campos.Data
         public DbSet<Ticket> Ticket { get; set; }
         public DbSet<Transaction> Transaction { get; set; }
         public DbSet<Vehicle> Vehicle { get; set; }
+        public DbSet<DriversLicense> DriversLicense { get; set; }
+        public DbSet<BankCard> BankCard { get; set; }
     }
 }

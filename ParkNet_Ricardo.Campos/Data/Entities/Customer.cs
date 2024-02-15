@@ -1,7 +1,10 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace ParkNet_Ricardo.Campos.Data.Entities
+﻿namespace ParkNet_Ricardo.Campos.Data.Entities
 {
+    public enum Roles
+    {
+        Admin = 1,
+        User = 0
+    }
     public class Customer
     {
         public Guid ID { get; private set; }
@@ -10,7 +13,7 @@ namespace ParkNet_Ricardo.Campos.Data.Entities
         public string BankCard { get; set; }
         public string Email { get; set; }
         public decimal Balance { get; set; }
-
+        public Roles Role { get; set; }
         public Customer()
         {
             ID = Guid.NewGuid();

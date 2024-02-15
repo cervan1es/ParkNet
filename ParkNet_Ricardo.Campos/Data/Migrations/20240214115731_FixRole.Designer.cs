@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ParkNet_Ricardo.Campos.Data;
 
@@ -11,9 +12,11 @@ using ParkNet_Ricardo.Campos.Data;
 namespace ParkNet_Ricardo.Campos.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240214115731_FixRole")]
+    partial class FixRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -224,26 +227,6 @@ namespace ParkNet_Ricardo.Campos.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ParkNet_Ricardo.Campos.Data.Entities.BankCard", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("CardNumber")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("CustomerID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("ExpireDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("BankCard");
-                });
-
             modelBuilder.Entity("ParkNet_Ricardo.Campos.Data.Entities.Customer", b =>
                 {
                     b.Property<Guid>("ID")
@@ -274,26 +257,6 @@ namespace ParkNet_Ricardo.Campos.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Customer");
-                });
-
-            modelBuilder.Entity("ParkNet_Ricardo.Campos.Data.Entities.DriversLicense", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CustomerID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("ExpireDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("LicenseNumber")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("DriversLicense");
                 });
 
             modelBuilder.Entity("ParkNet_Ricardo.Campos.Data.Entities.Floor", b =>
