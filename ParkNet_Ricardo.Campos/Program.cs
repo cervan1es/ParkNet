@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ParkNet_Ricardo.Campos.Data;
-using ParkNet_Ricardo.Campos.Models;
+using ParkNet_Ricardo.Campos.ViewModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +11,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+// ADD IDENTITY DEFAULT TABLES TO APPLICATIONCONTEXT THROUGH DEPENDENCY INJECTION
+#region AddIdentity Tables
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+#endregion
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
