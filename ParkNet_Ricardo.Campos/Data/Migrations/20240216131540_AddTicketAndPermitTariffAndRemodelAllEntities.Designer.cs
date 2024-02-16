@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ParkNet_Ricardo.Campos.Data;
 
@@ -11,9 +12,11 @@ using ParkNet_Ricardo.Campos.Data;
 namespace ParkNet_Ricardo.Campos.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240216131540_AddTicketAndPermitTariffAndRemodelAllEntities")]
+    partial class AddTicketAndPermitTariffAndRemodelAllEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -217,7 +220,7 @@ namespace ParkNet_Ricardo.Campos.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("CustomerVehicle");
+                    b.ToTable("Vehicle");
                 });
 
             modelBuilder.Entity("ParkNet_Ricardo.Campos.Data.Entities.DriversLicense", b =>
@@ -319,27 +322,6 @@ namespace ParkNet_Ricardo.Campos.Data.Migrations
                     b.ToTable("Permit");
                 });
 
-            modelBuilder.Entity("ParkNet_Ricardo.Campos.Data.Entities.PermitTariff", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("VehicleID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("PermitTariff");
-                });
-
             modelBuilder.Entity("ParkNet_Ricardo.Campos.Data.Entities.Ticket", b =>
                 {
                     b.Property<Guid>("ID")
@@ -369,33 +351,6 @@ namespace ParkNet_Ricardo.Campos.Data.Migrations
                     b.ToTable("Ticket");
                 });
 
-            modelBuilder.Entity("ParkNet_Ricardo.Campos.Data.Entities.TicketTariff", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("EndMinute")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Level")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)");
-
-                    b.Property<decimal>("LevelPricePerMinute")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("StartMinute")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("VehicleID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("TicketTariff");
-                });
-
             modelBuilder.Entity("ParkNet_Ricardo.Campos.Data.Entities.Transaction", b =>
                 {
                     b.Property<Guid>("ID")
@@ -414,21 +369,6 @@ namespace ParkNet_Ricardo.Campos.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Transaction");
-                });
-
-            modelBuilder.Entity("ParkNet_Ricardo.Campos.Data.Entities.Vehicle", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Vehicle");
                 });
 
             modelBuilder.Entity("ParkNet_Ricardo.Campos.Models.ApplicationUser", b =>

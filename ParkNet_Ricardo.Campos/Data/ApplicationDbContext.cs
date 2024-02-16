@@ -20,8 +20,11 @@ namespace ParkNet_Ricardo.Campos.Data
         public DbSet<Permit> Permit { get; set; }
         public DbSet<Ticket> Ticket { get; set; }
         public DbSet<Transaction> Transaction { get; set; }
-        public DbSet<Vehicle> Vehicle { get; set; }
+        public DbSet<CustomerVehicle> CustomerVehicle { get; set; }
         public DbSet<DriversLicense> DriversLicense { get; set; }
         public DbSet<BankCard> BankCard { get; set; }
+        public DbSet<TicketTariff> TicketTariff { get; set; }
+        public DbSet<PermitTariff> PermitTariff { get; set; }
+        public DbSet<Vehicle> Vehicle { get; set; }
     }
 }

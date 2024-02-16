@@ -3,18 +3,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ParkNet_Ricardo.Campos.Data.Entities
 {
-    public class Floor
+    public class PermitTariff
     {
         [Key]
         public Guid ID { get; private set; }
         [Required]
-        [ForeignKey("Park")]
-        public Guid ParkID { get; set; }
+        [ForeignKey("Vehicle")]
+        public Guid VehicleID { get; set; }
         [Required]
-        [Range(-99, 99, ErrorMessage="Range of floors goes from -99 to 99")]
-        public int Number { get; set; }
+        public string Type { get; set; }
+        [Required]
+        public decimal Price { get; set; }
 
-        public Floor()
+        public PermitTariff()
         {
             ID = Guid.NewGuid();
         }

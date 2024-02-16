@@ -4,10 +4,10 @@ namespace ParkNet_Ricardo.Campos.Data.Entities
 {
     public class Vehicle
     {
+        [Key]
         public Guid ID { get; set; }
-        public Guid CustomerID { get; set; }
+        [Required]
         public string Type { get; set; }
-        public string Plate { get; set; }
 
         public Vehicle()
         {

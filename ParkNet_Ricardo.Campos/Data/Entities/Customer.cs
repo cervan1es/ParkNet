@@ -1,19 +1,16 @@
-﻿namespace ParkNet_Ricardo.Campos.Data.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices;
+
+namespace ParkNet_Ricardo.Campos.Data.Entities
 {
-    public enum Roles
-    {
-        Admin = 1,
-        User = 0
-    }
     public class Customer
     {
+        [Key]
         public Guid ID { get; private set; }
         public string? Name { get; set; }
-        public string DriversLicense { get; set; }
-        public string BankCard { get; set; }
+        [Required]
         public string Email { get; set; }
-        public decimal Balance { get; set; }
-        public Roles Role { get; set; }
+
         public Customer()
         {
             ID = Guid.NewGuid();

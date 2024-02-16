@@ -3,28 +3,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ParkNet_Ricardo.Campos.Data.Entities
 {
-    public class Ticket
+    public class TicketTariff
     {
         [Key]
         public Guid ID { get; private set; }
         [ForeignKey("Vehicle")]
         [Required]
         public Guid VehicleID { get; set; }
-        [ForeignKey("ParkingSpace")]
         [Required]
-        public Guid ParkingSpaceID { get; set; }
-        [ForeignKey("TicketTariff")]
-        [Required]  
-        public Guid TicketTariffID { get; set;}
+        public char Level { get; set; }
         [Required]
-        public DateTime CheckIn { get; set; } = DateTime.Now;
+        public decimal LevelPricePerMinute { get; set; }
         [Required]
-        public DateTime CheckOut { get; set; }
+        public int StartMinute { get; set; }
         [Required]
-        public decimal Price { get; set; }
-        
+        public int EndMinute { get; set; }
 
-        public Ticket()
+        public TicketTariff()
         {
             ID = Guid.NewGuid();
         }
