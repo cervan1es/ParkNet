@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ParkNet_Ricardo.Campos.Data.Entities;
+using ParkNet_Ricardo.Campos.Models;
 using System.Runtime.CompilerServices;
 
 namespace ParkNet_Ricardo.Campos.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
