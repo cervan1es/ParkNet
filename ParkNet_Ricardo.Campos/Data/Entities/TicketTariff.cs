@@ -11,7 +11,7 @@ namespace ParkNet_Ricardo.Campos.Data.Entities
         [Required]
         public Guid VehicleID { get; set; }
         [Required]
-        public char Level { get; set; }
+        public int Level { get; set; }
         [Required]
         public decimal LevelPricePerMinute { get; set; }
         [Required]

@@ -12,6 +12,8 @@ namespace ParkNet_Ricardo.Campos.Data.Entities
         [Required]
         public string Name { get; set; }
 
+        public char? Type { get; set; }
+
         public ParkingSpace()
         {
             ID = Guid.NewGuid();

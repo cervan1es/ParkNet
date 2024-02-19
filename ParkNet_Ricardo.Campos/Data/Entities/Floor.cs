@@ -13,6 +13,8 @@ namespace ParkNet_Ricardo.Campos.Data.Entities
         [Required]
         [Range(-99, 99, ErrorMessage="Range of floors goes from -99 to 99")]
         public int Number { get; set; }
+        [Required]
+        public string Layout { get; set; }
 
         public Floor()
         {

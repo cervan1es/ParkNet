@@ -11,7 +11,7 @@ namespace ParkNet_Ricardo.Campos.Data.Entities
         [Required]
         public Guid CustomerID { get; set; }
         [Required]
-        [StringLength(16,MinimumLength = 16,ErrorMessage = "Card number must be 16 digits")]
+         
         public string CardNumber { get; set; }
         [Required]
         public DateTime ExpireDate { get; set; }
