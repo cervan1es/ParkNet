@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ParkNet_Ricardo.Campos.Data;
+using ParkNet_Ricardo.Campos.Interfaces;
+using ParkNet_Ricardo.Campos.Repositories;
 using ParkNet_Ricardo.Campos.ViewModels;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,10 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 #endregion
+
+builder.Services.AddScoped<IParkRepository, ParkRepository>();
+builder.Services.AddScoped<IFloorRepository, FloorRepository>();
+builder.Services.AddScoped<IParkingSpaceRepository, ParkingSpaceRepository>();
 
 builder.Services.AddRazorPages();
 

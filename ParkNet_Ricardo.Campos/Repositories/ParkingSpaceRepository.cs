@@ -1,12 +1,13 @@
 ﻿using ParkNet_Ricardo.Campos.Data;
 using ParkNet_Ricardo.Campos.Data.Entities;
+using ParkNet_Ricardo.Campos.Interfaces;
 
 namespace ParkNet_Ricardo.Campos.Repositories
 {
-    public class ParkingSpaceRepository (ApplicationDbContext context)
+    public class ParkingSpaceRepository (ApplicationDbContext context) : IParkingSpaceRepository
     {
         private ApplicationDbContext _context = context;
-        public async Task<ParkingSpace> AddParkingSpace(Guid floorID, string parkingSpaceCoordenate, char vehicleType)
+        public async Task<ParkingSpace> AddAsyncParkingSpace(Guid floorID, string parkingSpaceCoordenate, char vehicleType)
         {
            var parkingSpace = new ParkingSpace
            {

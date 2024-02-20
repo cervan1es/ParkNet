@@ -1,9 +1,10 @@
 ﻿using ParkNet_Ricardo.Campos.Data;
 using ParkNet_Ricardo.Campos.Data.Entities;
+using ParkNet_Ricardo.Campos.Interfaces;
 
 namespace ParkNet_Ricardo.Campos.Repositories
 {
-    public class ParkRepository(ApplicationDbContext context)
+    public class ParkRepository(ApplicationDbContext context) : IParkRepository
     {
         private ApplicationDbContext _context = context;
 

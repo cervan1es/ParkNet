@@ -36,12 +36,10 @@ namespace ParkNet_Ricardo.Campos.Pages.ParkSetUp
             {
                 return Page();
             }
-
+            
             _context.Park.Add(Park);
             await _context.SaveChangesAsync();
-          var parkid = _context.Park.Where(p => p.Name == Park.Name).Select(p => p.ID);
-
-
+            
             return RedirectToPage("./Index");
         }
     }
