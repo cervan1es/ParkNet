@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ParkNet_Ricardo.Campos.Data;
 
@@ -11,9 +12,11 @@ using ParkNet_Ricardo.Campos.Data;
 namespace ParkNet_Ricardo.Campos.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240217032845_AddPArkLayoutEntityToFloorTable")]
+    partial class AddPArkLayoutEntityToFloorTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -266,10 +269,6 @@ namespace ParkNet_Ricardo.Campos.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Layout")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -285,15 +284,12 @@ namespace ParkNet_Ricardo.Campos.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Coordenate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid>("FloorID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("VehicleType")
-                        .HasColumnType("nvarchar(1)");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -388,8 +384,9 @@ namespace ParkNet_Ricardo.Campos.Data.Migrations
                     b.Property<int>("EndMinute")
                         .HasColumnType("int");
 
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
+                    b.Property<string>("Level")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)");
 
                     b.Property<decimal>("LevelPricePerMinute")
                         .HasColumnType("decimal(18,2)");
