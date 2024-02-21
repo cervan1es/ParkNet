@@ -19,4 +19,4 @@ namespace ParkNet_Ricardo.Campos.Data.Entities
             ID = Guid.NewGuid();
         }
     }
-}
+} 

@@ -1,4 +1,5 @@
-﻿using ParkNet_Ricardo.Campos.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ParkNet_Ricardo.Campos.Data;
 using ParkNet_Ricardo.Campos.Data.Entities;
 using ParkNet_Ricardo.Campos.Interfaces;
 
@@ -19,6 +20,11 @@ namespace ParkNet_Ricardo.Campos.Repositories
             _context.Floor.Add(floor);
             await _context.SaveChangesAsync();
             return floor;
+        }
+
+        public async Task<List<Floor>> GetAsyncAll()
+        {
+            return await _context.Floor.ToListAsync();
         }
     }
 }
