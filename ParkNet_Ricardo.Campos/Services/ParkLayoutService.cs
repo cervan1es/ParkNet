@@ -90,7 +90,7 @@ namespace ParkNet_Ricardo.Campos.Services
 
         private static List<string> FloorIdentification(string parkLayout)
         {
-            var floors = parkLayout.Split("\n\n").ToList();
+            var floors = parkLayout.Split("\r\n\r\n").ToList();
             return floors;
         }
 
