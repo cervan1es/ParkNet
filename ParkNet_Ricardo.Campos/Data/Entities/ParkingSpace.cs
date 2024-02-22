@@ -10,9 +10,11 @@ namespace ParkNet_Ricardo.Campos.Data.Entities
         [ForeignKey("Floor")]
         public Guid FloorID { get; set; }
         [Required]
-        public string Coordenate { get; set; }
+        public char Row { get; set; }
+        [Required]
+        public string Column { get; set; }
 
-        public string? VehicleType { get; set; }
+        public char? VehicleType { get; set; }
 
         public ParkingSpace()
         {

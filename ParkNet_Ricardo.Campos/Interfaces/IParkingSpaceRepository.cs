@@ -4,6 +4,6 @@ namespace ParkNet_Ricardo.Campos.Interfaces
 {
     public interface IParkingSpaceRepository
     {
-        Task<ParkingSpace> AddAsyncParkingSpace(Guid floorID, string parkingSpaceCoordenate, string? vehicleType);
+        Task<ParkingSpace> AddAsyncParkingSpace(Guid floorID, char row, string column, char? vehicleType);
     }
 }

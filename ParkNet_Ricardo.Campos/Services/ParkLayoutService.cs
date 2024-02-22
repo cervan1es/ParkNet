@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ParkNet_Ricardo.Campos.Interfaces;
 using ParkNet_Ricardo.Campos.Repositories;
+using System.Drawing.Text;
 
 namespace ParkNet_Ricardo.Campos.Services
 {
@@ -32,10 +33,10 @@ namespace ParkNet_Ricardo.Campos.Services
             foreach (var floorLayout in floors)
             {
                 int number = floors.IndexOf(floorLayout);
-                var floor = await _floorRepository.AddAsyncFloor(park.ID, number, floorLayout);
+                var floor = await _floorRepository.AddAsyncFloor(park.ID, number);
             }
 
-            List<string> rows = parkLayout.Split("\n").ToList();
+            List<string> rows = parkLayout.Split("\r\n").ToList();
             int maxRowLength = GetMaxRowLength(rows);
             int floorNumber= 0;
 
@@ -43,36 +44,51 @@ namespace ParkNet_Ricardo.Campos.Services
 
             for (int i = 0; i < rows.Count(); i++)
             {
-                List<string> row = rows[i].Split().ToList();
-                var floor = floorsEntities[floorNumber];
-                if (row.Count() == 0) floorNumber = floorNumber + 1;
+                char[] row = rows[i].ToCharArray();
+                var floor = floorsEntities.FirstOrDefault(f => f.Number.Equals(floorNumber));
                 for (int j = 0; j < maxRowLength; j++)
                 {
-                    string coordinate = GetCoordinates(j, i);
-                    string? currentRow;
-                    if (j < row.Count()) currentRow = row[j];
-                    else currentRow = null;
-                    await _parkingSpaceRepository.AddAsyncParkingSpace(floor.ID, coordinate, currentRow);
+                    char currentRow = GetRow(j);
+                    string currentColumn = GetColumn(i);
+                    char? currentVehicleType;
+                    if (j < row.Count()) currentVehicleType = row[j];
+                    else currentVehicleType = null;
+                    await _parkingSpaceRepository.AddAsyncParkingSpace(floor.ID, currentRow, currentColumn, currentVehicleType);
                 }
             }
 
             return true;
         }
 
-        private static string GetCoordinates(int column, int row)
+        public char GetRow(int rowNumber)
         {
-            if (column >= 26) return "";
-            if (column < 0) return "";
-            if (row < 0) return "";
-            if (row >= 52) return "";
+            if (rowNumber >= 26) return '\0';
+            if (rowNumber < 0) return '\0';
 
-            string[] alphabet = [
-                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-                "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
-            ];
+            char[] alphabet =
+            {
+                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+                'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+            };
 
-            if (row <= 25) return $"{alphabet[column]}{row + 1}";
-            return $"{alphabet[column]}{alphabet[row]}";
+            return alphabet[rowNumber];
+        }
+
+        public string GetColumn(int columnNumber)
+        {
+            if (columnNumber < 0) return "";
+            if (columnNumber >= 52) return "";
+
+             string[] alphabet =
+                {
+                    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+                    "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+                };
+
+            if (columnNumber <= 25) return $"{columnNumber + 1}";
+            return $"{alphabet[columnNumber]}";
+
+
         }
         
         private static bool CharactersValidation(string parkCharacters)

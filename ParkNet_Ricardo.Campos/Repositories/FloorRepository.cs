@@ -9,13 +9,12 @@ namespace ParkNet_Ricardo.Campos.Repositories
     {
         private ApplicationDbContext _context = context;
 
-        public async Task<Floor> AddAsyncFloor(Guid parkID, int floorNumber, string floorLayout)
+        public async Task<Floor> AddAsyncFloor(Guid parkID, int floorNumber)
         {
             var floor = new Floor
             {
                 ParkID = parkID,
-                Number = floorNumber,
-                Layout = floorLayout
+                Number = floorNumber
             };
             _context.Floor.Add(floor);
             await _context.SaveChangesAsync();
