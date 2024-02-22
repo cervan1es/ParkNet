@@ -48,8 +48,8 @@ namespace ParkNet_Ricardo.Campos.Services
                 var floor = floorsEntities.FirstOrDefault(f => f.Number.Equals(floorNumber));
                 for (int j = 0; j < maxRowLength; j++)
                 {
-                    char currentRow = GetRow(j);
-                    string currentColumn = GetColumn(i);
+                    char currentRow = GetRow(i);
+                    string currentColumn = GetColumn(j);
                     char? currentVehicleType;
                     if (j < row.Count()) currentVehicleType = row[j];
                     else currentVehicleType = null;
@@ -87,8 +87,6 @@ namespace ParkNet_Ricardo.Campos.Services
 
             if (columnNumber <= 25) return $"{columnNumber + 1}";
             return $"{alphabet[columnNumber]}";
-
-
         }
         
         private static bool CharactersValidation(string parkCharacters)
@@ -101,7 +99,6 @@ namespace ParkNet_Ricardo.Campos.Services
                 }
             }
             return false;
-          
         }
 
         private static List<string> FloorIdentification(string parkLayout)
