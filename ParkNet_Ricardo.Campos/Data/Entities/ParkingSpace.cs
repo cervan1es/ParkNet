@@ -12,7 +12,7 @@ namespace ParkNet_Ricardo.Campos.Data.Entities
         [Required]
         public string Coordenate { get; set; }
 
-        public char? VehicleType { get; set; }
+        public string? VehicleType { get; set; }
 
         public ParkingSpace()
         {

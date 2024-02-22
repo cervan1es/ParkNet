@@ -12,13 +12,10 @@ namespace ParkNet_Ricardo.Campos.Pages.ParkSetUp
 {
     public class CreateModel : PageModel
     {
-        private readonly ParkNet_Ricardo.Campos.Data.ApplicationDbContext _context;
         private readonly ParkNet_Ricardo.Campos.Interfaces.IParkingLayoutService _parkLayoutService;  
 
-        public CreateModel(ParkNet_Ricardo.Campos.Data.ApplicationDbContext context, 
-            Interfaces.IParkingLayoutService parkingLayoutService)
+        public CreateModel(Interfaces.IParkingLayoutService parkingLayoutService)
         {
-            _context = context;
             _parkLayoutService = parkingLayoutService;
         }
 
@@ -28,7 +25,7 @@ namespace ParkNet_Ricardo.Campos.Pages.ParkSetUp
         }
 
         [BindProperty]
-        public Park Park { get; set; } = default!;
+        public string Park { get; set; } = default!;
         [BindProperty]
         public string Layout { get; set; } = default!;
 
@@ -39,8 +36,7 @@ namespace ParkNet_Ricardo.Campos.Pages.ParkSetUp
             {
                 return Page();
             }
-            
-            await _parkLayoutService.AddPark(Park.Name, Layout);
+            await _parkLayoutService.AddPark(Park, Layout);
             
             return RedirectToPage("./Index");
         }

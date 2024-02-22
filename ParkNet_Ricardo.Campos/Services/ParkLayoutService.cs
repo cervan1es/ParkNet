@@ -43,12 +43,16 @@ namespace ParkNet_Ricardo.Campos.Services
 
             for (int i = 0; i < rows.Count(); i++)
             {
-                List<string> row = rows[i].Split("").ToList();
+                List<string> row = rows[i].Split().ToList();
                 var floor = floorsEntities[floorNumber];
                 if (row.Count() == 0) floorNumber = floorNumber + 1;
                 for (int j = 0; j < maxRowLength; j++)
                 {
-                    await _parkingSpaceRepository.AddAsyncParkingSpace(floor.ID, GetCoordinates(j, i), char.Parse(row[j]));
+                    string coordinate = GetCoordinates(j, i);
+                    string? currentRow;
+                    if (j < row.Count()) currentRow = row[j];
+                    else currentRow = null;
+                    await _parkingSpaceRepository.AddAsyncParkingSpace(floor.ID, coordinate, currentRow);
                 }
             }
 
@@ -67,20 +71,21 @@ namespace ParkNet_Ricardo.Campos.Services
                 "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
             ];
 
-            if (row <= 25) return $"{alphabet[column][row + 1]}";
+            if (row <= 25) return $"{alphabet[column]}{row + 1}";
             return $"{alphabet[column]}{alphabet[row]}";
         }
         
         private static bool CharactersValidation(string parkCharacters)
         {
-            for (int i = 0; i < parkCharacters.Length; i++)
+            foreach(char character in parkCharacters)
             {
-                if (parkCharacters[i] != 'C' || parkCharacters[i] != 'M' || parkCharacters[i] != ' ')
+                if (character == ' ' || character == '\n' || character == 'C' || character == 'M')
                 {
-                    return false;
+                    return true;
                 }
             }
-            return true;
+            return false;
+          
         }
 
         private static List<string> FloorIdentification(string parkLayout)
