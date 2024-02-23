@@ -17,7 +17,10 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using ParkNet_Ricardo.Campos.Data;
+using ParkNet_Ricardo.Campos.Data.Entities;
 using ParkNet_Ricardo.Campos.ViewModels;
 
 namespace ParkNet_Ricardo.Campos.Areas.Identity.Pages.Account
@@ -31,6 +34,7 @@ namespace ParkNet_Ricardo.Campos.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext _context;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
@@ -38,7 +42,8 @@ namespace ParkNet_Ricardo.Campos.Areas.Identity.Pages.Account
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -47,6 +52,7 @@ namespace ParkNet_Ricardo.Campos.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
         }
 
         /// <summary>
@@ -152,6 +158,12 @@ namespace ParkNet_Ricardo.Campos.Areas.Identity.Pages.Account
                     }
                     else
                     {
+                        var customer = new Customer()
+                        {
+                            Email = Input.Email,
+                            Name = Input.Name
+                        };
+                        _context.Customer.Add(customer);
                         await _userManager.AddToRoleAsync(user, "User");
                     }
 
