@@ -2,8 +2,8 @@
 
 namespace ParkNet_Ricardo.Campos.Interfaces
 {
-    public interface IBankCardRepository
+    public interface IBankCardService
     {
-        List<BankCard> GetAllCustomerBankCards(Guid Customer);
+        List<BankCard> GetAllCustomerBankCards(string customerEmail);
     }
 }

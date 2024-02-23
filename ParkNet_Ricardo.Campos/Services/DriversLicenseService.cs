@@ -18,7 +18,7 @@ namespace ParkNet_Ricardo.Campos.Services
             if (expireDate < DateTime.Now) return false;
 
             var customer = _customerRepository.GetByEmail(customerEmail);
-            var driversLicense = _driversLicenseRepository.Create(customer.ID, expireDate, licenseNumber);
+            var driversLicense = _driversLicenseRepository.Create(customer!.ID, expireDate, licenseNumber);
 
             return true;
         }

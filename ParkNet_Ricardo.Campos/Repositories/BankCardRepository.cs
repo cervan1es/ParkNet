@@ -12,7 +12,7 @@ namespace ParkNet_Ricardo.Campos.Repositories
             _context = context;
         }
 
-        public List<BankCard> GetAll(Guid Customer)
+        public List<BankCard> GetAllCustomerBankCards(Guid Customer)
         {
             return _context.BankCard.ToList();
         }

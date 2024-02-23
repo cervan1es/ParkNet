@@ -18,11 +18,15 @@ namespace ParkNet_Ricardo.Campos.Pages.DriversLicense
     {
         private readonly IDriversLicenseService _driversLicenseService;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IBankCardService _bankCardService;
 
-        public CreateModel(IDriversLicenseService driversLicenseService, UserManager<ApplicationUser> userManager)
+        public CreateModel(IDriversLicenseService driversLicenseService,
+            UserManager<ApplicationUser> userManager,
+            IBankCardService bankCardService)
         {
             _driversLicenseService = driversLicenseService;
             _userManager = userManager;
+            _bankCardService = bankCardService;
         }
 
         public IActionResult OnGet()
@@ -40,10 +44,17 @@ namespace ParkNet_Ricardo.Campos.Pages.DriversLicense
             {
                 return Page();
             }
+
             var currentUser = await _userManager.GetUserAsync(User);
-            bool creationsuccessful = _driversLicenseService.Create(currentUser.Email, DriversLicense.ExpireDate, DriversLicense.LicenseNumber);
-            if (creationsuccessful) return RedirectToPage("./BankCard");
-            return RedirectToPage("./Index");
+            bool createDriversLicensewithSuccess = _driversLicenseService
+                .Create(currentUser?.Email, DriversLicense.ExpireDate, DriversLicense.LicenseNumber);
+
+            var customerBankCards = _bankCardService.GetAllCustomerBankCards(currentUser?.Email);
+
+            if (createDriversLicensewithSuccess && customerBankCards.Count == 0) return LocalRedirect(Url.Content("~/BankCard"));
+
+            //return RedirectToPage("./Index");
+            return Page();
         }
     }
 }
