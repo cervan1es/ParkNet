@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ParkNet_Ricardo.Campos.Data.Entities;
-using ParkNet_Ricardo.Campos.ViewModels;
 namespace ParkNet_Ricardo.Campos.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

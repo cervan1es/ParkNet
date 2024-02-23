@@ -4,7 +4,6 @@ using ParkNet_Ricardo.Campos.Data;
 using ParkNet_Ricardo.Campos.Interfaces;
 using ParkNet_Ricardo.Campos.Repositories;
 using ParkNet_Ricardo.Campos.Services;
-using ParkNet_Ricardo.Campos.ViewModels;
 
 var builder = WebApplication.CreateBuilder(args);
 

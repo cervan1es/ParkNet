@@ -10,7 +10,6 @@ using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pag
 using ParkNet_Ricardo.Campos.Data;
 using ParkNet_Ricardo.Campos.Data.Entities;
 using ParkNet_Ricardo.Campos.Interfaces;
-using ParkNet_Ricardo.Campos.ViewModels;
 
 namespace ParkNet_Ricardo.Campos.Pages.DriversLicense
 {
