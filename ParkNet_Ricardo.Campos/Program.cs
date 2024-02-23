@@ -27,6 +27,8 @@ builder.Services.AddScoped<IParkingSpaceRepository, ParkingSpaceRepository>();
 builder.Services.AddScoped<IParkingLayoutService, ParkLayoutService>();
 builder.Services.AddScoped<IDriversLicenseRepository, DriversLicenseRepository>();
 builder.Services.AddScoped<IDriversLicenseService, DriversLicenseService>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<IBankCardRepository, BankCardRepository>();
 
 builder.Services.AddRazorPages();
 
