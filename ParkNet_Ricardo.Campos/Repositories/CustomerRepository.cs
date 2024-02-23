@@ -14,7 +14,7 @@ namespace ParkNet_Ricardo.Campos.Repositories
 
         public Customer? GetByEmail(string email)
         {
-            var customer = _context.Customer.First(c => c.Email == email);
+            var customer = _context.Customer.FirstOrDefault(c => c.Email == email);
             return customer;
         }
     }

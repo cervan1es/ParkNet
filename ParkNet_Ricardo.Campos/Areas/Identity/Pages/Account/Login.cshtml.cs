@@ -122,16 +122,17 @@ namespace ParkNet_Ricardo.Campos.Areas.Identity.Pages.Account
                     _logger.LogInformation("User logged in.");
 
                     var currentCustomer = _context.Customer.FirstOrDefault(c => c.Email.Equals(Input.Email));
+                    // If the user is not a customer, it means that current user is Admin
                     if (currentCustomer is null)
                     {
                         return LocalRedirect(returnUrl);
                     }
-                    var currentDriversLicense = _context.DriversLicense.FirstOrDefault(d => d.ID.Equals(currentCustomer.ID));
+                    var currentDriversLicense = _context.DriversLicense.FirstOrDefault(d => d.CustomerID.Equals(currentCustomer.ID));
                     if (currentDriversLicense is null)
                     {
                         return LocalRedirect(Url.Content("~/DriversLicense"));
                     }
-                    var currentBankCard = _context.BankCard.FirstOrDefault(d => d.ID.Equals(currentCustomer.ID));
+                    var currentBankCard = _context.BankCard.FirstOrDefault(d => d.CustomerID.Equals(currentCustomer.ID));
                     if (currentBankCard is null)
                     {
                         return LocalRedirect(Url.Content("~/BankCard"));

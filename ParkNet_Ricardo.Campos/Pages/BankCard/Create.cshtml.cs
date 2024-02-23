@@ -2,21 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ParkNet_Ricardo.Campos.Data;
 using ParkNet_Ricardo.Campos.Data.Entities;
+using ParkNet_Ricardo.Campos.Interfaces;
+using ParkNet_Ricardo.Campos.ViewModels;
 
 namespace ParkNet_Ricardo.Campos.Pages.BankCard
 {
     public class CreateModel : PageModel
     {
-        private readonly ParkNet_Ricardo.Campos.Data.ApplicationDbContext _context;
+        private readonly IBankCardService _bankCardService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CreateModel(ParkNet_Ricardo.Campos.Data.ApplicationDbContext context)
+        public CreateModel(IBankCardService bankCardService, UserManager<ApplicationUser> userManager)
         {
-            _context = context;
+            _bankCardService = bankCardService;
+            _userManager = userManager;
         }
 
         public IActionResult OnGet()
@@ -35,8 +40,11 @@ namespace ParkNet_Ricardo.Campos.Pages.BankCard
                 return Page();
             }
 
-            _context.BankCard.Add(BankCard);
-            await _context.SaveChangesAsync();
+            var currentUser = await _userManager.GetUserAsync(User);
+            var createBankCarWithSuccess = _bankCardService
+                .CreateBankCard(currentUser.Email, BankCard.CardNumber, BankCard.ExpireDate);
+
+            if(createBankCarWithSuccess) return LocalRedirect(Url.Content("~/"));
 
             return RedirectToPage("./Index");
         }

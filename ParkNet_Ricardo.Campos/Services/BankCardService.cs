@@ -13,10 +13,20 @@ namespace ParkNet_Ricardo.Campos.Services
             _bankCardRepository = bankCardRepository;
             _customerRepository = customerRepository;
         }
+
+        public bool CreateBankCard(string customerEmail, string cardNumber, DateTime expireDate)
+        {
+            var customer = _customerRepository.GetByEmail(customerEmail);
+            var bankCard = _bankCardRepository.Create(customer.ID, cardNumber, expireDate);
+
+            if(bankCard is null) return false;
+            else return true;
+        }
+
         public List<BankCard> GetAllCustomerBankCards(string customerEmail)
         {
             var customer = _customerRepository.GetByEmail(customerEmail);
-            var customerBankCards = _bankCardRepository.GetAllCustomerBankCards(customer!.ID);
+            var customerBankCards = _bankCardRepository.GetAllCustomerBankCards(customer.ID);
 
             return customerBankCards;
         }
