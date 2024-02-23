@@ -25,6 +25,8 @@ builder.Services.AddScoped<IParkRepository, ParkRepository>();
 builder.Services.AddScoped<IFloorRepository, FloorRepository>();
 builder.Services.AddScoped<IParkingSpaceRepository, ParkingSpaceRepository>();
 builder.Services.AddScoped<IParkingLayoutService, ParkLayoutService>();
+builder.Services.AddScoped<IDriversLicenseRepository, DriversLicenseRepository>();
+builder.Services.AddScoped<IDriversLicenseService, DriversLicenseService>();
 
 builder.Services.AddRazorPages();
 
