@@ -8,8 +8,7 @@ namespace ParkNet_Ricardo.Campos.Data.Entities
         [Key]
         public Guid ID { get; private set; }
         [Required]
-        [ForeignKey("Vehicle")]
-        public Guid VehicleID { get; set; }
+        public char VehicleType { get; set; }
         [Required]
         public string Type { get; set; }
         [Required]

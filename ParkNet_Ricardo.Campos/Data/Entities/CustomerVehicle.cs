@@ -10,9 +10,8 @@ namespace ParkNet_Ricardo.Campos.Data.Entities
         [ForeignKey("Customer")]
         [Required]
         public Guid CustomerID { get; set; }
-        [ForeignKey("Vehicle")]
         [Required]
-        public Guid VehicleID { get; set; }
+        public char VehicleType { get; set; }
         [Required]
         public string Plate { get; set; }
 

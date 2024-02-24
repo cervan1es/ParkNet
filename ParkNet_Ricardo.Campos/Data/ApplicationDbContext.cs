@@ -22,6 +22,5 @@ namespace ParkNet_Ricardo.Campos.Data
         public DbSet<BankCard> BankCard { get; set; }
         public DbSet<TicketTariff> TicketTariff { get; set; }
         public DbSet<PermitTariff> PermitTariff { get; set; }
-        public DbSet<Vehicle> Vehicle { get; set; }
     }
 }
