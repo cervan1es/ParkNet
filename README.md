@@ -10,7 +10,7 @@ This is a system developed in ASP.NET 8 for the integrated management of parking
 - ASP.NET 8 (Razor Pages Framework)
 
 ## Database - Diagram
-![Entities Organization](https://github.com/cervan1es/ParkNet/blob/main/Assets/Diagram%20Update.PNG?raw=true)
+![Entities Organization](https://github.com/cervan1es/ParkNet/blob/main/Assets/ParkNetDiagram.png?raw=true)
 
 ## Key Features
 ### Client
