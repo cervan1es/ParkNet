@@ -31,6 +31,8 @@ builder.Services.AddScoped<IBankCardRepository, BankCardRepository>();
 builder.Services.AddScoped<IBankCardService, BankCardService>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
+builder.Services.AddScoped<IPermitRepository, PermitRepository>();
+builder.Services.AddScoped<IPermitService, PermitService>();
 
 builder.Services.AddRazorPages();
 
