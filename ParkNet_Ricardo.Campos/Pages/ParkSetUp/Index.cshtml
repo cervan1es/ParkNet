@@ -18,12 +18,21 @@
             </th>
             <th></th>
         </tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Park[0].Layout)
+            </th>
+            <th></th>
+
     </thead>
     <tbody>
 @foreach (var item in Model.Park) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Layout)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
