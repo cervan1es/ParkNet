@@ -1,5 +1,5 @@
 ﻿@page
-@model ParkNet_Ricardo.Campos.Pages.BankCard.IndexModel
+@model ParkNet_Ricardo.Campos.Pages.BalanceTopUp.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -11,35 +11,39 @@
     <a asp-page="Create">Create New</a>
 </p>
 <p>
-    Balance: 
-    @Html.DisplayNameFor(model => model.Balance)
+    <div class="form-group">
+        <label asp-for="Balance" class="control-label"></label>
+        <p>
+            @Model.Balance
+        </p>
+    </div>
 </p>
-    <table class="table">
+<table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.BankCard[0].CustomerID)
+                @Html.DisplayNameFor(model => model.Transaction[0].CustomerID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BankCard[0].CardNumber)
+                @Html.DisplayNameFor(model => model.Transaction[0].Value)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BankCard[0].ExpireDate)
+                @Html.DisplayNameFor(model => model.Transaction[0].Date)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.BankCard) {
+@foreach (var item in Model.Transaction) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CustomerID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CardNumber)
+                @Html.DisplayFor(modelItem => item.Value)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExpireDate)
+                @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

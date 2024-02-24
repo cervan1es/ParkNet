@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkNet_Ricardo.Campos", "ParkNet_Ricardo.Campos.csproj", "{7AB182C2-BCA4-4CB4-BB55-BB766D7F10A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkNetTests", "..\ParkNetTests\ParkNetTests.csproj", "{B267ABC5-6A84-441D-8207-3AC3CB930F76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkNetTests", "..\ParkNetTests\ParkNetTests.csproj", "{B267ABC5-6A84-441D-8207-3AC3CB930F76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

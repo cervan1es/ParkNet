@@ -20,10 +20,13 @@ namespace ParkNet_Ricardo.Campos.Pages.BankCard
         }
 
         public IList<Data.Entities.BankCard> BankCard { get;set; } = default!;
+        public decimal Balance { get; set; } = 0;
 
         public async Task OnGetAsync()
         {
             BankCard = await _context.BankCard.ToListAsync();
+            var transactions = await _context.Transaction.ToListAsync();
+            Balance = transactions.Sum(t => t.Value);
         }
     }
 }

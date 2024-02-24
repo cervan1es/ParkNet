@@ -29,6 +29,8 @@ builder.Services.AddScoped<IDriversLicenseService, DriversLicenseService>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IBankCardRepository, BankCardRepository>();
 builder.Services.AddScoped<IBankCardService, BankCardService>();
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
 
 builder.Services.AddRazorPages();
 
