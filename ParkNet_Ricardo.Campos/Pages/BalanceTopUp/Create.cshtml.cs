@@ -16,20 +16,29 @@ namespace ParkNet_Ricardo.Campos.Pages.BalanceTopUp
     {
         private readonly ITransactionService _transactionService;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IBankCardService _bankCardService;
 
-        public CreateModel(ITransactionService transactionService, UserManager<ApplicationUser> userManager)
+        public CreateModel(ITransactionService transactionService, UserManager<ApplicationUser> userManager, IBankCardService bankCardService)
         {
             _transactionService = transactionService;
             _userManager = userManager;
-        }
-
-        public IActionResult OnGet()
-        {
-            return Page();
+            _bankCardService = bankCardService;
         }
 
         [BindProperty]
         public Transaction Transaction { get; set; } = default!;
+        public List<Data.Entities.BankCard> BankCards { get; set; } = new(); 
+        public async Task<IActionResult> OnGetAsync()
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            var customerBankCards = _bankCardService.GetAllCustomerBankCards(currentUser.Email);
+
+            if(customerBankCards.Count == 0) return RedirectToPage("/BankCard/Create");
+
+            BankCards = customerBankCards;
+
+            return Page();
+        }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -39,6 +48,12 @@ namespace ParkNet_Ricardo.Campos.Pages.BalanceTopUp
                 return Page();
             }
             var currentUser = await _userManager.GetUserAsync(User);
+            var customerBankCards = _bankCardService.GetAllCustomerBankCards(currentUser.Email);
+
+            if(customerBankCards.Count == 0) return RedirectToPage("/BankCard/Create");
+
+            BankCards = customerBankCards;
+
             var createTransactionWithSuccess = await _transactionService
                 .CreateTransactionAsync(currentUser.Email, Transaction.Value, Transaction.Date);
             return RedirectToPage("./Index");

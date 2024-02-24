@@ -2,7 +2,7 @@
 @model ParkNet_Ricardo.Campos.Pages.ParkSetUp.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Park Set Up";
 }
 
 <h1>Index</h1>
@@ -18,22 +18,13 @@
             </th>
             <th></th>
         </tr>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Park[0].Layout)
-            </th>
-            <th></th>
-
     </thead>
     <tbody>
 @foreach (var item in Model.Park) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Layout)
-            </td>
+            </td>      
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |

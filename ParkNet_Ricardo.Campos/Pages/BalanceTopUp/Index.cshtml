@@ -2,10 +2,10 @@
 @model ParkNet_Ricardo.Campos.Pages.BalanceTopUp.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Balance Top Up";
 }
 
-<h1>Index</h1>
+<h1>Balance Top Up</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -22,9 +22,6 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Transaction[0].CustomerID)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Transaction[0].Value)
             </th>
             <th>
@@ -36,9 +33,6 @@
     <tbody>
 @foreach (var item in Model.Transaction) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerID)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Value)
             </td>
