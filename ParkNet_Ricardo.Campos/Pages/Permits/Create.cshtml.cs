@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,14 +14,28 @@ namespace ParkNet_Ricardo.Campos.Pages.Permits
     public class CreateModel : PageModel
     {
         private readonly ParkNet_Ricardo.Campos.Data.ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CreateModel(ParkNet_Ricardo.Campos.Data.ApplicationDbContext context)
+        public CreateModel(ParkNet_Ricardo.Campos.Data.ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        public IActionResult OnGet()
+        [BindProperty]
+        public List<CustomerVehicle> Vehicles { get; set; } = new();
+        [BindProperty]
+        public List<PermitTariff> PermitTariffs { get; set; } = new();
+        public Guid CurrentVehicleID { get; set; }
+        public async Task<IActionResult> OnGetAsync()
         {
+            var currentUser = await _userManager.GetUserAsync(User);
+            var customer = _context.Customer.FirstOrDefault(c => c.Email == currentUser.Email);
+            var vehicles = _context.CustomerVehicle.Where(v => v.CustomerID == customer.ID).ToList();
+            if (vehicles.Count == 0) return RedirectToPage("/Vehicle/Create");
+            Vehicles = vehicles;
+            var permitTariffs = _context.PermitTariff.ToList();
+            PermitTariffs = permitTariffs;
             return Page();
         }
 
@@ -34,7 +49,7 @@ namespace ParkNet_Ricardo.Campos.Pages.Permits
             {
                 return Page();
             }
-
+            Permit.VehicleID = CurrentVehicleID;
             _context.Permit.Add(Permit);
             await _context.SaveChangesAsync();
 

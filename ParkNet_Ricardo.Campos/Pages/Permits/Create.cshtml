@@ -14,9 +14,13 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Permit.VehicleID" class="control-label"></label>
-                <input asp-for="Permit.VehicleID" class="form-control" />
-                <span asp-validation-for="Permit.VehicleID" class="text-danger"></span>
+                <label asp-for="Vehicles" class="control-label"></label>
+                <select>
+                    @foreach (var vehicle in Model.Vehicles)
+                    {
+                        <option value="@vehicle.ID">@vehicle.Plate</option>
+                    }
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Permit.ParkingSpaceID" class="control-label"></label>
@@ -25,8 +29,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Permit.PermitTariffID" class="control-label"></label>
-                <input asp-for="Permit.PermitTariffID" class="form-control" />
-                <span asp-validation-for="Permit.PermitTariffID" class="text-danger"></span>
+                <select>                     
+                    @foreach (var permitTariff in Model.PermitTariffs)
+                    {
+                        <option value="@permitTariff.ID">@permitTariff.Type</option>
+                    }
+                    </select>
             </div>
             <div class="form-group">
                 <label asp-for="Permit.StartDate" class="control-label"></label>

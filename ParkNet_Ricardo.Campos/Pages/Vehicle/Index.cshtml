@@ -2,7 +2,7 @@
 @model ParkNet_Ricardo.Campos.Pages.Vehicle.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Vehicles";
 }
 
 <h1>Index</h1>
@@ -13,9 +13,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerVehicle[0].CustomerID)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.CustomerVehicle[0].VehicleType)
             </th>
@@ -28,9 +25,6 @@
     <tbody>
 @foreach (var item in Model.CustomerVehicle) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerID)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.VehicleType)
             </td>
