@@ -28,6 +28,12 @@
                 <span asp-validation-for="Permit.ParkingSpaceID" class="text-danger"></span>
             </div>
             <div class="form-group">
+               <select
+                   asp-for="CurrentParkID" asp-items="Model.SelectOptions">
+
+               </select>
+            </div>
+            <div class="form-group">
                 <label asp-for="Permit.PermitTariffID" class="control-label"></label>
                 <select>                     
                     @foreach (var permitTariff in Model.PermitTariffs)
