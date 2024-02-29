@@ -10,10 +10,10 @@ namespace PARKNET.Data.Entities
 
         [Required]
         [ForeignKey("Park")]
-        public string ParkId { get; set; }
+        public Guid ParkId { get; set; }
 
         [Required]
-        public string Coordenate { get; set; }
+        public string Coordinate { get; set; }
 
         [Required]
         public char? VehicleType { get; set; }

@@ -277,16 +277,15 @@ namespace PARKNET.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Coordenate")
+                    b.Property<string>("Coordinate")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsOccupied")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ParkId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("ParkId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("VehicleType")
                         .IsRequired()

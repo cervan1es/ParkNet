@@ -12,8 +12,8 @@ using PARKNET.Data;
 namespace PARKNET.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240229095242_RemoveFloorEntityAndChangeParkingSpace")]
-    partial class RemoveFloorEntityAndChangeParkingSpace
+    [Migration("20240229113701_ChangeParkingSpaceParkId")]
+    partial class ChangeParkingSpaceParkId
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -280,16 +280,15 @@ namespace PARKNET.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Coordenate")
+                    b.Property<string>("Coordinate")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsOccupied")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ParkId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("ParkId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("VehicleType")
                         .IsRequired()

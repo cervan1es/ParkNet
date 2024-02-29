@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PARKNET.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class RemoveFloorEntityAndChangeParkingSpace : Migration
+    public partial class CorrectCoordinatePropertyName : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,13 +22,21 @@ namespace PARKNET.Data.Migrations
                 name: "Row",
                 table: "ParkingSpace");
 
+            migrationBuilder.DropColumn(
+                name: "IsAdmin",
+                table: "Customer");
+
+            migrationBuilder.DropColumn(
+                name: "Tag",
+                table: "Customer");
+
             migrationBuilder.RenameColumn(
                 name: "Column",
                 table: "ParkingSpace",
                 newName: "ParkId");
 
             migrationBuilder.AddColumn<string>(
-                name: "Coordenate",
+                name: "Coordinate",
                 table: "ParkingSpace",
                 type: "nvarchar(max)",
                 nullable: false,
@@ -39,7 +47,7 @@ namespace PARKNET.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Coordenate",
+                name: "Coordinate",
                 table: "ParkingSpace");
 
             migrationBuilder.RenameColumn(
@@ -58,6 +66,20 @@ namespace PARKNET.Data.Migrations
                 name: "Row",
                 table: "ParkingSpace",
                 type: "nvarchar(1)",
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<bool>(
+                name: "IsAdmin",
+                table: "Customer",
+                type: "bit",
+                nullable: false,
+                defaultValue: false);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Tag",
+                table: "Customer",
+                type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
 

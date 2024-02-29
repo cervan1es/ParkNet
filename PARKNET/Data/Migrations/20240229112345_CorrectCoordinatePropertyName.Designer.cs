@@ -12,8 +12,8 @@ using PARKNET.Data;
 namespace PARKNET.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240229093023_RemoveAdmin")]
-    partial class RemoveAdmin
+    [Migration("20240229112345_CorrectCoordinatePropertyName")]
+    partial class CorrectCoordinatePropertyName
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -255,23 +255,6 @@ namespace PARKNET.Data.Migrations
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("PARKNET.Data.Entities.Floor", b =>
-                {
-                    b.Property<Guid>("FloorID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Number")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ParkID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("FloorID");
-
-                    b.ToTable("Floor");
-                });
-
             modelBuilder.Entity("PARKNET.Data.Entities.Park", b =>
                 {
                     b.Property<Guid>("ParkID")
@@ -297,19 +280,16 @@ namespace PARKNET.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Column")
+                    b.Property<string>("Coordinate")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("FloorID")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsOccupied")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Row")
+                    b.Property<string>("ParkId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("VehicleType")
                         .IsRequired()
