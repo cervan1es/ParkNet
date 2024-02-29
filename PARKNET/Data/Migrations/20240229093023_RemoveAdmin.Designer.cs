@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PARKNET.Data;
 
@@ -11,9 +12,11 @@ using PARKNET.Data;
 namespace PARKNET.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240229093023_RemoveAdmin")]
+    partial class RemoveAdmin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -252,6 +255,23 @@ namespace PARKNET.Data.Migrations
                     b.ToTable("Customer");
                 });
 
+            modelBuilder.Entity("PARKNET.Data.Entities.Floor", b =>
+                {
+                    b.Property<Guid>("FloorID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ParkID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("FloorID");
+
+                    b.ToTable("Floor");
+                });
+
             modelBuilder.Entity("PARKNET.Data.Entities.Park", b =>
                 {
                     b.Property<Guid>("ParkID")
@@ -277,16 +297,19 @@ namespace PARKNET.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Coordenate")
+                    b.Property<string>("Column")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("FloorID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsOccupied")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ParkId")
+                    b.Property<string>("Row")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(1)");
 
                     b.Property<string>("VehicleType")
                         .IsRequired()

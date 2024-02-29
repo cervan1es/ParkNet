@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using PARKNET.Data;
 using PARKNET.Data.Entities;
 
-namespace PARKNET.Pages.CustomerInfo
+namespace PARKNET.Pages.ParkSetUp
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace PARKNET.Pages.CustomerInfo
         }
 
         [BindProperty]
-        public Customer Customer { get; set; } = default!;
+        public Park Park { get; set; } = default!;
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -35,9 +35,7 @@ namespace PARKNET.Pages.CustomerInfo
                 return Page();
             }
 
-            Customer.CustomerEmail = User.Identity.Name;
-
-            _context.Customer.Add(Customer);
+            _context.Park.Add(Park);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
