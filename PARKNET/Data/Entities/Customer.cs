@@ -23,9 +23,6 @@ namespace PARKNET.Data.Entities
         [Required]
         public DateTime ExpireDate { get; set; }
 
-        [Required]
-        public bool IsAdmin { get; set; }
-
 
         public Customer()
         {

@@ -8,14 +8,12 @@ namespace PARKNET.Data.Entities
         [Key]
         public Guid ParkingSpaceID { get; private set; }
 
-        [ForeignKey("Floor")]
-        public Guid FloorID { get; set; }
+        [Required]
+        [ForeignKey("Park")]
+        public string ParkId { get; set; }
 
         [Required]
-        public char Row { get; set; }
-
-        [Required]
-        public string Column { get; set; }
+        public string Coordenate { get; set; }
 
         [Required]
         public char? VehicleType { get; set; }
