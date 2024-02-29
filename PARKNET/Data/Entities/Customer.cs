@@ -9,8 +9,7 @@ namespace PARKNET.Data.Entities
         public Guid CustomerID { get; private set; }
 
         [Required]
-        [ForeignKey("AspNetUsers")]
-        public string UserID { get; set; }
+        public string CustomerEmail { get; set; }
 
         [Required]
         public string Tag { get; set; }
