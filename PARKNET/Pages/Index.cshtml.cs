@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using PARKNET.Data.Migrations;
 using PARKNET.Services;
 
 namespace PARKNET.Pages
@@ -18,7 +19,7 @@ namespace PARKNET.Pages
         public IActionResult OnGet()
         {
             var userEmail = User.Identity.Name;
-            if (userEmail is null) return Page();
+            if (userEmail is null || userEmail == "admin@parknet.com") return Page();
             else
             {
                 var customer = _customerService.GetCustomerbyEmail(userEmail);
