@@ -15,7 +15,6 @@ namespace PARKNET.Data.Entities
         [Required]
         public string Coordinate { get; set; }
 
-        [Required]
         public char? VehicleType { get; set; }
 
         [Required]

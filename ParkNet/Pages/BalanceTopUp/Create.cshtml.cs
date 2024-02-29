@@ -7,18 +7,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PARKNET.Data;
 using PARKNET.Data.Entities;
+using PARKNET.Services;
 
-namespace PARKNET.Pages.ParkSetUp
+namespace PARKNET.Pages.BalanceTopUp
 {
     public class CreateModel : PageModel
     {
         private readonly PARKNET.Data.ApplicationDbContext _context;
-        private readonly PARKNET.Services.ParkingSpaceService _parkingSpaceService;
+        private readonly CustomerService _customerService;
 
-        public CreateModel(PARKNET.Data.ApplicationDbContext context, Services.ParkingSpaceService parkingSpaceService)
+        public CreateModel(PARKNET.Data.ApplicationDbContext context, CustomerService customerService)
         {
             _context = context;
-            _parkingSpaceService = parkingSpaceService;
+            _customerService = customerService;
         }
 
         public IActionResult OnGet()
@@ -27,21 +28,18 @@ namespace PARKNET.Pages.ParkSetUp
         }
 
         [BindProperty]
-        public Park Park { get; set; } = default!;
-
-
+        public Transaction Transaction { get; set; } = default!;
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            var customer = _customerService.GetCustomerbyEmail(User.Identity.Name);
+            Transaction.CustomerID = customer.CustomerID;
 
-            _context.Park.Add(Park);
+            Transaction.Date = DateTime.Now;
+
+            _context.Transaction.Add(Transaction);
             await _context.SaveChangesAsync();
-            _parkingSpaceService.AddParkingSpacesByParkID(Park.ParkID, Park.Layout);
 
             return RedirectToPage("./Index");
         }

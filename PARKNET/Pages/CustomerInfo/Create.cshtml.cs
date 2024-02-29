@@ -30,7 +30,7 @@ namespace PARKNET.Pages.CustomerInfo
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (Customer.DriversLicenseNumber == 0 || Customer.CardNumber is null)
             {
                 return Page();
             }
