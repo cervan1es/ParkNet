@@ -1,0 +1,66 @@
+﻿@page
+@model PARKNET.Pages.CustomerInfo.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].CustomerEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].DriversLicenseNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].DriversLicenseExpireDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].CardNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].ExpireDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].IsAdmin)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Customer) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriversLicenseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriversLicenseExpireDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CardNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpireDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAdmin)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CustomerID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CustomerID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CustomerID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

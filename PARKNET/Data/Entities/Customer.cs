@@ -12,9 +12,6 @@ namespace PARKNET.Data.Entities
         public string CustomerEmail { get; set; }
 
         [Required]
-        public string Tag { get; set; }
-
-        [Required]
         public int DriversLicenseNumber { get; set; }
 
         [Required]

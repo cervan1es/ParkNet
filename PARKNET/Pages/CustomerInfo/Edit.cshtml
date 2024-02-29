@@ -1,0 +1,60 @@
+﻿@page
+@model PARKNET.Pages.CustomerInfo.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Customer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Customer.CustomerID" />
+            <div class="form-group">
+                <label asp-for="Customer.CustomerEmail" class="control-label"></label>
+                <input asp-for="Customer.CustomerEmail" class="form-control" />
+                <span asp-validation-for="Customer.CustomerEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.DriversLicenseNumber" class="control-label"></label>
+                <input asp-for="Customer.DriversLicenseNumber" class="form-control" />
+                <span asp-validation-for="Customer.DriversLicenseNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.DriversLicenseExpireDate" class="control-label"></label>
+                <input asp-for="Customer.DriversLicenseExpireDate" class="form-control" />
+                <span asp-validation-for="Customer.DriversLicenseExpireDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.CardNumber" class="control-label"></label>
+                <input asp-for="Customer.CardNumber" class="form-control" />
+                <span asp-validation-for="Customer.CardNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.ExpireDate" class="control-label"></label>
+                <input asp-for="Customer.ExpireDate" class="form-control" />
+                <span asp-validation-for="Customer.ExpireDate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Customer.IsAdmin" /> @Html.DisplayNameFor(model => model.Customer.IsAdmin)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,8 +1,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PARKNET.Data;
+using PARKNET.Repositories;
+using PARKNET.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<CustomerRepository>();
+builder.Services.AddScoped<CustomerService>();
+
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
