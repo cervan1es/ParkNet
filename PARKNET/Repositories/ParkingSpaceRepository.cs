@@ -18,5 +18,10 @@ namespace PARKNET.Repositories
             _context.SaveChanges();
             return parkingSpace;
         }
+
+        public List<ParkingSpace> GetParkingSpacesByParkIdOrderedByCoordinate(Guid parkID)
+        {
+            return _context.ParkingSpace.Where(p => p.ParkId == parkID).OrderBy(p => p.Coordinate).ToList();
+        }
     }
 }
