@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PARKNET.Data.Entities;
 
@@ -17,5 +18,6 @@ namespace PARKNET.Data
         public DbSet<Transaction> Transaction { get; set; }
         public DbSet<Vehicle> CustomerVehicle { get; set; }
         public DbSet<PermitTariff> PermitTariff { get; set; }
+        public DbSet<PermitPurchase> PermitPurchase { get; set; }
     }
 }

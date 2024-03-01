@@ -30,11 +30,8 @@ namespace PARKNET.Pages.Vehicles
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
+            var customer = _context.Customer.FirstOrDefault(c => c.CustomerEmail == User.Identity.Name);
+            Vehicle.CustomerID = customer.CustomerID;
             _context.CustomerVehicle.Add(Vehicle);
             await _context.SaveChangesAsync();
 

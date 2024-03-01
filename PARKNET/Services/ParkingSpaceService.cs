@@ -34,7 +34,7 @@ namespace PARKNET.Services
 
                     var currentParkingSpace = new ParkingSpace
                     {
-                        ParkId = parkID,
+                        ParkID = parkID,
                         Coordinate = currentCoordinate,
                         VehicleType = currentVehicleType,
                         IsOccupied = false

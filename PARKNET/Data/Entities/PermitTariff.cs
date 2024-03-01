@@ -16,6 +16,8 @@ namespace PARKNET.Data.Entities
         [Required]
         public decimal Price { get; set; }
 
+        [Required]
+        public int Days { get; set; }
 
         public PermitTariff()
         {

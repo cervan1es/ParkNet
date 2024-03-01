@@ -10,7 +10,7 @@ namespace PARKNET.Data.Entities
 
         [Required]
         [ForeignKey("Park")]
-        public Guid ParkId { get; set; }
+        public Guid ParkID { get; set; }
 
         [Required]
         public string Coordinate { get; set; }
@@ -18,7 +18,7 @@ namespace PARKNET.Data.Entities
         public char? VehicleType { get; set; }
 
         [Required]
-        public bool IsOccupied { get; set; }
+        public bool IsOccupied { get; set; } = false;
 
 
         public ParkingSpace()

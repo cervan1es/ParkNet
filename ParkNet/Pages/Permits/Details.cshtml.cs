@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using PARKNET.Data;
 using PARKNET.Data.Entities;
 
-namespace PARKNET.Pages.ParkSetUp
+namespace PARKNET.Pages.Permits
 {
     public class DetailsModel : PageModel
     {
@@ -19,8 +19,7 @@ namespace PARKNET.Pages.ParkSetUp
             _context = context;
         }
 
-        public Park Park { get; set; } = default!;
-        public List<string>Rows { get; set; } = new List<string>();
+        public Permit Permit { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -29,15 +28,14 @@ namespace PARKNET.Pages.ParkSetUp
                 return NotFound();
             }
 
-            var park = await _context.Park.FirstOrDefaultAsync(m => m.ParkID == id);
-            if (park == null)
+            var permit = await _context.Permit.FirstOrDefaultAsync(m => m.PermitID == id);
+            if (permit == null)
             {
                 return NotFound();
             }
             else
             {
-                Rows = park.Layout.Split("\r\n").ToList();
-                Park = park;
+                Permit = permit;
             }
             return Page();
         }

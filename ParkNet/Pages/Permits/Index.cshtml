@@ -1,0 +1,66 @@
+﻿@page
+@model PARKNET.Pages.Permits.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Permit[0].VehicleID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Permit[0].ParkingSpaceID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Permit[0].PermitTariffID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Permit[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Permit[0].EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Permit[0].Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Permit) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParkingSpaceID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PermitTariffID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.PermitID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PermitID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PermitID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

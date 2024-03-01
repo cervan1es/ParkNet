@@ -16,13 +16,23 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Park.Name)
-        </dd>
+        </dd> <hr/>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Park.Layout)
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Park.Layout)
-        </dd>
+        <br />
+        <br />
+        @foreach (var row in Model.Rows)
+        {
+            <dd>
+                @Html.DisplayFor(model => row)
+            </dd>
+            if (row == "")
+            {
+                <br />
+                <br />
+            }
+        }
     </dl>
 </div>
 <div>
