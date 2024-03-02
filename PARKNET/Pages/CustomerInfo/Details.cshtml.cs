@@ -21,6 +21,9 @@ namespace PARKNET.Pages.CustomerInfo
 
         public Customer Customer { get; set; } = default!;
 
+        [BindProperty]
+        public decimal Balance { get; set; }
+
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null)
@@ -29,6 +32,9 @@ namespace PARKNET.Pages.CustomerInfo
             }
 
             var customer = await _context.Customer.FirstOrDefaultAsync(m => m.CustomerID == id);
+            var balance = await _context.Transaction.Where(t => t.CustomerID == id).SumAsync(t => t.Value);
+            Balance = balance;
+
             if (customer == null)
             {
                 return NotFound();

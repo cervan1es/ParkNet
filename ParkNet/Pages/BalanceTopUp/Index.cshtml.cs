@@ -27,5 +27,24 @@ namespace PARKNET.Pages.BalanceTopUp
             Transaction = await _context.Transaction.ToListAsync();
             Balance = Transaction.Sum(t => t.Value);
         }
+
+        public IActionResult OnGetWithdraw()
+        {
+            var customer = _context.Customer.FirstOrDefault(c=>c.CustomerEmail.Equals(User.Identity.Name));
+            var transactions = _context.Transaction.Where(t => t.CustomerID == customer.CustomerID).ToList();
+            var balance = transactions.Sum(t => t.Value);
+            if (balance >0)
+            {
+                var transaction = new Transaction
+                {
+                    CustomerID = customer.CustomerID,
+                    Value = -balance,
+                    Date = DateTime.Now
+                };
+                _context.Transaction.Add(transaction);
+                _context.SaveChanges();                
+            }
+            return RedirectToPage("./Index");
+        }
     }
 }
