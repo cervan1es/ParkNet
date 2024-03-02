@@ -30,11 +30,14 @@ namespace PARKNET.Pages.Permits
 
         public IActionResult OnGet()
         {
+            var customer = _customerService.GetCustomerbyEmail(User.Identity.Name);
+            var vehicles = _context.CustomerVehicle.Where(v => v.CustomerID == customer.CustomerID).ToList();
+            if (vehicles.Count == 0) return LocalRedirect(Url.Content("~/Vehicles/Create"));
+
             _permitService.UpdateNotOccupiedPermits();
             _context.PermitPurchase.ExecuteDelete();
             _context.SaveChanges();
 
-            var customer = _customerService.GetCustomerbyEmail(User.Identity.Name);
 
             ViewData["Vehicles"] = new SelectList(_context.CustomerVehicle.Where(v => v.CustomerID == customer.CustomerID), "VehicleID", "Plate");
             ViewData["Parks"] = new SelectList(_context.Park, "ParkID", "Name");

@@ -21,9 +21,14 @@ namespace PARKNET.Pages.Permits
 
         public IList<Permit> Permit { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
+            var customer = _context.Customer.FirstOrDefault(c => c.CustomerEmail == User.Identity.Name);
+            var balance = _context.Transaction.Where(t => t.CustomerID == customer.CustomerID).Sum(t => t.Value);
+            if ((int)balance <= 0) return LocalRedirect(Url.Content("~/BalanceTopUp/Create"));
+
             Permit = await _context.Permit.ToListAsync();
+            return Page();
         }
     }
 }

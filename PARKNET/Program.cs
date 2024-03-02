@@ -12,6 +12,8 @@ builder.Services.AddScoped<ParkingSpaceRepository>();
 builder.Services.AddScoped<ParkingSpaceService>();
 builder.Services.AddScoped<TransactionRepository>();
 builder.Services.AddScoped<TransactionService>();
+builder.Services.AddScoped<PermitRepository>();
+builder.Services.AddScoped<PermitService>();
 
 
 

@@ -23,7 +23,7 @@ namespace PARKNET.Pages
             else
             {
                 var customer = _customerService.GetCustomerbyEmail(userEmail);
-                if (customer is null) return LocalRedirect(Url.Content("~/CustomerInfo"));
+                if (customer is null) return LocalRedirect(Url.Content("~/CustomerInfo/Create"));
             }
 
             return Page();
