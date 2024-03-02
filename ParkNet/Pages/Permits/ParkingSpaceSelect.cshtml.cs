@@ -20,10 +20,16 @@ namespace PARKNET.Pages.Permits
             _context = context;
         }
 
+        [BindProperty]
+        public Permit Permit { get; set; } = new();
+
         public IActionResult OnGet()
         {
             var permitPurchase = _context.PermitPurchase.ToList()[0];
             var vehicleType = _context.CustomerVehicle.Find(permitPurchase.VehicleID).VehicleType;
+
+            var park = _context.Park.Find(permitPurchase.ParkID);
+            MaxRowLength = park.Layout.Split("\r\n").ToList().Max(m => m.Length);
 
             var selectItems = _context.ParkingSpace
                 .Where(ps => ps.ParkID == permitPurchase.ParkID
@@ -31,8 +37,13 @@ namespace PARKNET.Pages.Permits
                 && ps.VehicleType == vehicleType).OrderBy(ps=>ps.Coordinate).ToList();
             ViewData["ParkingSpaces"] = new SelectList(selectItems, "ParkingSpaceID" , "Coordinate");
 
-            var park = _context.Park.Find(permitPurchase.ParkID);
+
             ParkLayoutRows = park.Layout.Split("\r\n").ToList();
+            Permit.VehicleID = permitPurchase.VehicleID;
+            Permit.PermitTariffID = permitPurchase.PermitTariffID;
+            Permit.StartDate = permitPurchase.StartDate;
+            Permit.EndDate = permitPurchase.EndDate;
+            Permit.Price = permitPurchase.Price;
 
             return Page();
         }
@@ -40,8 +51,14 @@ namespace PARKNET.Pages.Permits
 
         [BindProperty]
         public List<string> ParkLayoutRows { get; set; } = default!;
+
         [BindProperty]
-        public Permit Permit { get; set; } = default!;
+        public int MaxRowLength { get; set; } = 0;
+
+        [BindProperty]
+        public List<string> Alphabet { get; set; } = new List<string> { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}; 
+
+        
 
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
@@ -52,19 +69,18 @@ namespace PARKNET.Pages.Permits
                 return Page();
             }
 
-            var currentParkingSpace = _context.ParkingSpace.Find(Permit.ParkingSpaceID);
-            currentParkingSpace.IsOccupied = true;
-            _context.ParkingSpace.Update(currentParkingSpace);
-            _context.SaveChanges();
-
             var permitPurchase = _context.PermitPurchase.ToList()[0];
+
             Permit.VehicleID = permitPurchase.VehicleID;
             Permit.PermitTariffID = permitPurchase.PermitTariffID;
             Permit.StartDate = permitPurchase.StartDate;
             Permit.EndDate = permitPurchase.EndDate;
+            Permit.Price = permitPurchase.Price;
 
-
-
+            var currentParkingSpace = _context.ParkingSpace.Find(Permit.ParkingSpaceID);
+            currentParkingSpace.IsOccupied = true;
+            _context.ParkingSpace.Update(currentParkingSpace);
+            _context.SaveChanges();
 
             _context.Permit.Add(Permit);
             await _context.SaveChangesAsync();

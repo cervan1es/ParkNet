@@ -30,6 +30,11 @@
                 <span asp-validation-for="PermitTariff.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="PermitTariff.Days" class="control-label"></label>
+                <input asp-for="PermitTariff.Days" class="form-control" />
+                <span asp-validation-for="PermitTariff.Days" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

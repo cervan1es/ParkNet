@@ -22,6 +22,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.PermitTariff[0].Price)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PermitTariff[0].Days)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -36,6 +39,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Days)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.PermitTariffID">Edit</a> |

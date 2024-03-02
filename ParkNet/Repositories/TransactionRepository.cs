@@ -12,9 +12,24 @@ namespace PARKNET.Repositories
             _context = context;
         }
 
+
         public List<Transaction> GetTransactions()
         {
             return _context.Transaction.ToList();
+        }
+
+
+        public void AddTransaction(Transaction transaction)
+        {
+            _context.Transaction.Add(transaction);
+            _context.SaveChanges();
+        }
+
+
+        public decimal GetBalance(Guid customerID)
+        {
+            var customerTransactions = _context.Transaction.Where(t => t.CustomerID == customerID);
+            return customerTransactions.Sum(t => t.Value);
         }
     }
 }

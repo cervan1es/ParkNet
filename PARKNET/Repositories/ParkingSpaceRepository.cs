@@ -23,5 +23,16 @@ namespace PARKNET.Repositories
         {
             return _context.ParkingSpace.Where(p => p.ParkID == parkID).OrderBy(p => p.Coordinate).ToList();
         }
+
+        public List<ParkingSpace> GetAllParkingSpaces()
+        {
+            return _context.ParkingSpace.ToList();
+        }
+
+        public void UpdtateParkingSpace(ParkingSpace parkingSpace)
+        {
+            _context.ParkingSpace.Update(parkingSpace);
+            _context.SaveChanges();
+        }
     }
 }

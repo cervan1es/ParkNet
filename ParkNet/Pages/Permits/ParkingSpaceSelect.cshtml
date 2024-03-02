@@ -12,21 +12,43 @@
 <div class="row">
     <div class="col-md-4">
         <form method="post">
+            <p>
+                Price: @Model.Permit.Price
+            </p>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <p>
                 Park Layout:
             </p>
-            @foreach (var row in Model.ParkLayoutRows)
+            @for (int i = 0; i < Model.ParkLayoutRows.Count; i++)
             {
+                if (i == 0)
+                {
+                    <span>
+                        &nbsp;</span>
+                }
+                var column = i + 1;
+               <span style="font-weigth:bolder">
+                   @column
+               </span>
+            }
+
+            @for (var i = 0; i < Model.ParkLayoutRows.Count; i++)
+            {
+                var row = Model.ParkLayoutRows[i];
             <dd>
+                <span style="font-weigth:bolder">
+                        @Model.Alphabet[i]
+                </span>
+
                     @Html.DisplayFor(model => row)
             </dd>
                 if (row == "")
                 {
                 <br />
-                <br />
                 }
             }
+
+
             <div class="form-group">
                 <label asp-for="Permit.ParkingSpaceID" class="control-label">Parking Space</label>
                 <select asp-for="Permit.ParkingSpaceID" asp-items="ViewBag.ParkingSpaces" class="form-control"></select>

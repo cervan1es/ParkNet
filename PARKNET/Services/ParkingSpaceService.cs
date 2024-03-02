@@ -75,42 +75,9 @@ namespace PARKNET.Services
             return _parkingSpaceRepository.GetParkingSpacesByParkIdOrderedByCoordinate(parkId);
         }
 
+        public void UpdateNotOccupiedParkingSpaces()
+        {
 
-         // - função para verificar se a coordenada está ocupada
-
-
-
-
-
-
-
-
-
-
-
-
-            //private static bool CharactersValidation(string parkCharacters)
-            //{
-            //    foreach (char character in parkCharacters)
-            //    {
-            //        if (character == ' ' || character == '\n' || character == 'C' || character == 'M')
-            //        {
-            //            return true;
-            //        }
-            //    }
-            //    return false;
-            //}
-
-
-            //public ParkingSpace AddParkingSpacesByParkID(Guid parkID, string layout)
-            //{
-
-            //    ParkingSpace parkingSpace = new ParkingSpace();
-            //    parkingSpace.ParkId = parkID;
-            //    parkingSpace.Coordinate = layout;
-            //    parkingSpace.VehicleType = 'C';
-            //    parkingSpace.IsOccupied = false;
-            //    return _parkingSpaceRepository.AddParkingSpace(parkingSpace);
-            //}
         }
+        
 }
