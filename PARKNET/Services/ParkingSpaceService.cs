@@ -16,7 +16,7 @@ namespace PARKNET.Services
         // - função para receber a string e guardar em coordenadas na db
         public void AddParkingSpacesByParkID(Guid parkID, string layout)
         {
-            List<string>rows = layout.Split("\r\n").ToList();
+            List<string> rows = layout.Split("\r\n").ToList();
 
             int maxRowLength = rows.Max(m => m.Length);
 
@@ -26,7 +26,7 @@ namespace PARKNET.Services
 
                 for (int j = 0; j < maxRowLength; j++)
                 {
-                    string currentCoordinate = GetCoordinate(i,j);
+                    string currentCoordinate = GetCoordinate(i, j);
                     char? currentVehicleType;
 
                     if (j < row.Count()) currentVehicleType = row[j];
@@ -69,15 +69,10 @@ namespace PARKNET.Services
         }
 
 
-         // - função para ir buscar o layout com as coordenadas à db e printar
-         public List<ParkingSpace> GetParkingSpacesByParkIdOrderedByCoordinate(Guid parkId)
+        // - função para ir buscar o layout com as coordenadas à db e printar
+        public List<ParkingSpace> GetParkingSpacesByParkIdOrderedByCoordinate(Guid parkId)
         {
             return _parkingSpaceRepository.GetParkingSpacesByParkIdOrderedByCoordinate(parkId);
         }
-
-        public void UpdateNotOccupiedParkingSpaces()
-        {
-
-        }
-        
+    }
 }
