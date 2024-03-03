@@ -51,25 +51,18 @@ namespace PARKNET.Pages.Permits
         [BindProperty]
         public Guid ParkID { get; set; } = default!;
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+
+
+
         public async Task<IActionResult> OnPostAsync()
         {
             var permitTariff = _context.PermitTariff.Find(Permit.PermitTariffID);
-            TimeSpan duration = Permit.EndDate - Permit.StartDate;
-            int durationInDays = duration.Days;
+            var permitTariffDays = permitTariff.Days;
+            
+            var endDate = Permit.StartDate.AddDays(permitTariffDays);
+            Permit.EndDate = endDate;
 
-            int divider;
-            if (permitTariff.Days == 0)
-            {
-                divider = 1;
-            }
-            else
-            {
-                divider = permitTariff.Days;
-            }
-
-            decimal tariff =  durationInDays / divider;
-            Permit.Price = permitTariff.Price * tariff;
+            Permit.Price = permitTariff.Price;
             bool isBalanceSufficient = _transactionService.AddTransaction(User.Identity.Name, Permit.Price);
             if (!isBalanceSufficient)
             {

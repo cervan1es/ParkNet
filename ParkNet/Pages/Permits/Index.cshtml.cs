@@ -19,7 +19,7 @@ namespace PARKNET.Pages.Permits
             _context = context;
         }
 
-        public IList<Permit> Permit { get;set; } = default!;
+        public IList<Permit> Permit { get;set; } = new List<Permit>();
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -27,7 +27,18 @@ namespace PARKNET.Pages.Permits
             var balance = _context.Transaction.Where(t => t.CustomerID == customer.CustomerID).Sum(t => t.Value);
             if ((int)balance <= 0) return LocalRedirect(Url.Content("~/BalanceTopUp/Create"));
 
-            Permit = await _context.Permit.ToListAsync();
+            var vehicles = _context.CustomerVehicle.ToList();
+
+            var permits = await _context.Permit.ToListAsync();
+            foreach(var permit in permits)
+            {
+                var vehicle = vehicles.FirstOrDefault(v => v.VehicleID == permit.VehicleID);
+                if(vehicle.CustomerID == customer.CustomerID)
+                {
+                    Permit.Add(permit);
+                }
+            }
+
             return Page();
         }
     }

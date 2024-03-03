@@ -44,7 +44,7 @@ namespace PARKNET.Pages.BalanceTopUp
                 }
             }
 
-            Transaction = await _context.Transaction.ToListAsync();
+            Transaction = await _context.Transaction.Where(t=>t.CustomerID.Equals(customer.CustomerID)).ToListAsync();
             Balance = Transaction.Sum(t => t.Value);
         }
 

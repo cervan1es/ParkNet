@@ -8,24 +8,24 @@ using Microsoft.EntityFrameworkCore;
 using PARKNET.Data;
 using PARKNET.Data.Entities;
 
-namespace PARKNET.Pages.Vehicles
+namespace PARKNET.Pages.Profit
 {
-    public class IndexModel : PageModel
+    public class ProfitModel : PageModel
     {
         private readonly PARKNET.Data.ApplicationDbContext _context;
 
-        public IndexModel(PARKNET.Data.ApplicationDbContext context)
+        public ProfitModel(PARKNET.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IList<Vehicle> Vehicle { get;set; } = default!;
+        public IList<Permit> Permit { get;set; } = default!;
+        public decimal Profit { get; set; }
 
         public async Task OnGetAsync()
         {
-            var customer = await _context.Customer.FirstOrDefaultAsync(c => c.CustomerEmail.Equals(User.Identity.Name));
-
-            Vehicle = await _context.CustomerVehicle.Where(v=>v.CustomerID.Equals(customer.CustomerID)).ToListAsync();
+            Permit = await _context.Permit.ToListAsync();
+            Profit = Permit.Sum(p => p.Price);
         }
     }
 }
