@@ -1,6 +1,13 @@
 # Parking Management System - ParkNet
 This is a system developed in ASP.NET 8 for the integrated management of parking lots by ParkNet, a service company. The system allows clients to perform operations such as registration, purchase of passes, balance loading, and activity history checking. The administrator has additional functionalities for managing parking lots, clients, and pricing.
 
+⚠️ ATTENTION ⚠️
+
+
+When starting the program for the first time, it is neede to set up an Admin account with the following Email: 'admin@parknet.com'
+
+
+
 ## Technologies
 
 - Git
