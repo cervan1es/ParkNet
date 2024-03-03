@@ -21,12 +21,34 @@ namespace PARKNET.Pages.BalanceTopUp
 
         public IList<Transaction> Transaction { get;set; } = default!;
         public decimal Balance { get; set; }
+        public bool HasPermits { get; set; } = false;
 
         public async Task OnGetAsync()
         {
+            var customer = await _context.Customer.FirstOrDefaultAsync(c => c.CustomerEmail.Equals(User.Identity.Name));
+            var vehicles = _context.CustomerVehicle.Where(v => v.CustomerID == customer.CustomerID).ToList();
+
+            for (int i = 0; i < vehicles.Count; i++)
+            {
+                var permits = _context.Permit.Where(p=>p.VehicleID == vehicles[i].VehicleID).ToList();
+                if (permits.Count > 0)
+                {
+                    foreach (var permit in permits)
+                    {
+                        if (permit.EndDate > DateTime.Now)
+                        {
+                            HasPermits = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
             Transaction = await _context.Transaction.ToListAsync();
             Balance = Transaction.Sum(t => t.Value);
         }
+
+
 
         public IActionResult OnGetWithdraw()
         {

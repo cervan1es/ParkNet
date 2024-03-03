@@ -10,9 +10,13 @@
 <p>
     <a asp-page="Create">Top Up</a>
 </p>
-<p>
-    <a asp-page-handler="Withdraw">Withdraw Current Balance</a>
-</p>
+@if (!Model.HasPermits)
+{
+    <p>
+        <a asp-page-handler="Withdraw">Withdraw Current Balance</a>
+    </p>
+}
+
 <label asp-for="Balance">Balance: </label>
 <label>@Model.Balance</label>
 <table class="table">
