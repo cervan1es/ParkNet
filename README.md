@@ -49,7 +49,7 @@ If using Terminal:
 3. **Run the Application**: `dotnet run`
 
 4. **Access the Application**:
-Once the application is running, open your web browser and go to http://localhost:7063 to access the ParkNet application.
+Once the application is running, open your web browser and go to http://localhost:7232 to access the ParkNet application.
 
 6. **Stop the Application**:
 To stop the application, press Ctrl + C in the terminal where the application is running.
