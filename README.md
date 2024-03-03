@@ -25,7 +25,6 @@ ______________________________________________________________________
 ## Also note that:
 
 - The 'Withdraw' button in 'Balance - Transactions' will only appear if the customer logged in doesn't have any Permit currently active or if its Balance is above 0€
-
 ______________________________________________________________________
 ## Technologies
 
@@ -36,6 +35,8 @@ ______________________________________________________________________
 - ASP.NET 8 (Razor Pages Framework)
 
 ## Database - Diagram
+⚠️ This Diagram doesn't represent the Database layout used for final version of this project but it displayed here for evaluation purposes for the project presentation.
+
 ![Entities Organization](https://github.com/cervan1es/ParkNet/blob/main/Assets/ParkNetDiagram.png?raw=true)
 
 ## Key Features
