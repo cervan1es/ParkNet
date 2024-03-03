@@ -26,7 +26,7 @@ ______________________________________________________________________
 
 - The 'Withdraw' button in 'Balance - Transactions' will only appear if the customer logged in doesn't have any Permit currently active or if its Balance is above 0€
 
-- As I restarted this project in the middle of the deadline but used the same git folder, on GitHub it appears two projects, but when it repository is pulled, it will pull only one folder and it will run normally on the machine.
+- As I restarted this project but used the same git folder, on GitHub it appears two projects, but when it repository is pulled, it will pull only one folder and it will run normally on the machine.
 ______________________________________________________________________
 ## Technologies
 
