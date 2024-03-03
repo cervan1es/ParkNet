@@ -1,16 +1,26 @@
 # Parking Management System - ParkNet
 This is a system developed in ASP.NET 8 for the integrated management of parking lots by ParkNet, a service company. The system allows clients to perform operations such as registration, purchase of passes, balance loading, and activity history checking. The administrator has additional functionalities for managing parking lots, clients, and pricing.
 
-⚠️ ATTENTION ⚠️
+## ⚠️ ATTENTION 
 
 
-When starting the program for the first time, you need to register an Admin account with the following Email: 'admin@parknet.com'
 
-- Ensure that the database connection strings in the project are configured correctly according to your local setup.
+
+❗️ 1.  Ensure that the database connection strings in the project are configured correctly according to your local setup.
 >**Database Connection**:
 The application is configured to use a local SQL Server database via the connection string specified in the environment variable or in the _appsettings.json_ file. Ensure that the connection string is correctly configured to point to your local SQL Server instance. If you wish to use a different local database, you will need to modify the connection string in the _appsettings.json_ file accordingly.
 
 By following these steps, you should be able to clone the project, run it locally, and access the ParkNet application through your web browser.
+
+❗️ 2. When starting the program for the first time, you need to register an Admin account with the following Email: 'admin@parknet.com'
+
+❗️ 3. When the Admin is creatin the 'Permit Pariff', make sure you specify the Vehicle Type ('C' for Car and 'M' for Motorbike), the Permit type (Daily, Weekly, Montlhy or Anual) and its respective price.
+
+See an example of the recommended format below:
+
+### ' Car - Daily Permit | 2€ '
+
+______________________________________________________________________
 
 
 ## Technologies
