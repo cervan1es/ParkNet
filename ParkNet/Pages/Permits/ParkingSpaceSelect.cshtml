@@ -17,37 +17,9 @@
             </p>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <p>
-                Park Layout:
+                Park:@Model.CurrentPark.Name;
             </p>
-            @for (int i = 0; i < Model.ParkLayoutRows.Count; i++)
-            {
-                if (i == 0)
-                {
-                    <span>
-                        &nbsp;</span>
-                }
-                var column = i + 1;
-               <span style="font-weigth:bolder">
-                   @column
-               </span>
-            }
-
-            @for (var i = 0; i < Model.ParkLayoutRows.Count; i++)
-            {
-                var row = Model.ParkLayoutRows[i];
-            <dd>
-                <span style="font-weigth:bolder">
-                        @Model.Alphabet[i]
-                </span>
-
-                    @Html.DisplayFor(model => row)
-            </dd>
-                if (row == "")
-                {
-                <br />
-                }
-            }
-
+            
 
             <div class="form-group">
                 <label asp-for="Permit.ParkingSpaceID" class="control-label">Available Parking Spaces</label>

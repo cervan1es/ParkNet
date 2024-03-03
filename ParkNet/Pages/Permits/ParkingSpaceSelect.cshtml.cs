@@ -22,6 +22,7 @@ namespace PARKNET.Pages.Permits
 
         [BindProperty]
         public Permit Permit { get; set; } = new();
+        public Park CurrentPark { get; set; }
 
         public IActionResult OnGet()
         {
@@ -29,6 +30,7 @@ namespace PARKNET.Pages.Permits
             var vehicleType = _context.CustomerVehicle.Find(permitPurchase.VehicleID).VehicleType;
 
             var park = _context.Park.Find(permitPurchase.ParkID);
+            CurrentPark = park;
             MaxRowLength = park.Layout.Split("\r\n").ToList().Max(m => m.Length);
 
             var selectItems = _context.ParkingSpace
