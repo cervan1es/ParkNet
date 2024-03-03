@@ -18,7 +18,7 @@
 }
 
 <label asp-for="Balance">Balance: </label>
-<label>@Model.Balance</label>
+<label>@Model.Balance €</label>
 <table class="table">
     <thead>
         <tr>
@@ -36,6 +36,7 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Value)
+                €
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
