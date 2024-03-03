@@ -39,10 +39,13 @@ namespace PARKNET.Pages.Vehicles
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
+
+
         public async Task<IActionResult> OnPostAsync()
         {
+            var customer = _context.Customer.FirstOrDefault(c => c.CustomerEmail == User.Identity.Name);
+            Vehicle.CustomerID = customer.CustomerID;
+
             if (!ModelState.IsValid)
             {
                 return Page();

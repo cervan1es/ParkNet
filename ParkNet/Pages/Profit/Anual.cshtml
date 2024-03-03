@@ -1,0 +1,69 @@
+﻿@page
+@model PARKNET.Pages.Profit.AnualModel
+
+@{
+    ViewData["Title"] = "Anual";
+}
+
+<h1>Anual</h1>
+
+<p>
+    Profit: @Model.Profit
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Vehicle Plate
+            </th>
+            <th>
+                Park
+            </th>
+            <th>
+                Parking Space
+            </th>
+            <th>
+                Permit Tariff
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Permit[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Permit[0].EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Permit[0].Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Permit)
+        {
+            <tr>
+                <td>
+                    @Model.Vehicles.FirstOrDefault(v => v.VehicleID == item.VehicleID).Plate
+                </td>
+                <td>
+                    @Model.Parks.FirstOrDefault(p => p.ParkID == (Model.ParkingSpaces.FirstOrDefault(ps => ps.ParkingSpaceID == item.ParkingSpaceID).ParkID)).Name
+                </td>
+                <td>
+                    @Model.ParkingSpaces.FirstOrDefault(p => p.ParkingSpaceID == item.ParkingSpaceID).Coordinate
+                </td>
+                <td>
+                    @Model.PermitTariffs.FirstOrDefault(t => t.PermitTariffID == item.PermitTariffID).TariffType
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

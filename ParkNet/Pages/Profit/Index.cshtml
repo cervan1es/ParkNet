@@ -7,19 +7,29 @@
 
 <h1>Profit</h1>
 
+    <a asp-page="./Anual">Current Year Profit</a>
+    <br />
+
+
 
 Profit: @Model.Profit
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Permit[0].VehicleID)
+                Customer Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Permit[0].ParkingSpaceID)
+                Vehicle Plate
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Permit[0].PermitTariffID)
+                Park
+            </th>
+            <th>
+                Parking Space
+            </th>
+            <th>
+                Permit Tariff
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Permit[0].StartDate)
@@ -37,13 +47,18 @@ Profit: @Model.Profit
 @foreach (var item in Model.Permit) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.VehicleID)
+                @Model.Customers.FirstOrDefault(c => c.CustomerID == (Model.Vehicles.FirstOrDefault(v=>v.VehicleID == item.VehicleID).CustomerID)).CustomerEmail
+            <td>
+                @Model.Vehicles.FirstOrDefault(v => v.VehicleID == item.VehicleID).Plate
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ParkingSpaceID)
+                @Model.Parks.FirstOrDefault(p => p.ParkID == (Model.ParkingSpaces.FirstOrDefault(ps=>ps.ParkingSpaceID == item.ParkingSpaceID).ParkID)).Name
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PermitTariffID)
+                @Model.ParkingSpaces.FirstOrDefault(p => p.ParkingSpaceID == item.ParkingSpaceID).Coordinate
+            </td>
+            <td>
+                @Model.PermitTariffs.FirstOrDefault(t => t.PermitTariffID == item.PermitTariffID).TariffType
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
