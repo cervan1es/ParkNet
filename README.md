@@ -14,7 +14,7 @@ By following these steps, you should be able to clone the project, run it locall
 
 ❗️ 2. When starting the program for the first time, you need to register an Admin account with the following Email: 'admin@parknet.com'
 
-❗️ 3. When the Admin is creatin the 'Permit Pariff', make sure you specify the Vehicle Type ('C' for Car and 'M' for Motorbike), the Permit type (Daily, Weekly, Montlhy or Anual) and its respective price.
+❗️ 3. When the Admin is creating the 'Permit Pariff', make sure you specify the Vehicle Type ('C' for Car and 'M' for Motorbike), the Permit type (Daily, Weekly, Montlhy or Anual) and its respective price.
 
 See an example of the recommended format below:
 
@@ -22,7 +22,11 @@ See an example of the recommended format below:
 
 ______________________________________________________________________
 
+## Also note that:
 
+- The 'Withdraw' button in 'Balance - Transactions' will only appear if the customer logged in doesn't have any Permit currently active or if its Balance is above 0€
+
+______________________________________________________________________
 ## Technologies
 
 - Git
