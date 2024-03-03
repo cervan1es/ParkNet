@@ -4,8 +4,13 @@ This is a system developed in ASP.NET 8 for the integrated management of parking
 ⚠️ ATTENTION ⚠️
 
 
-When starting the program for the first time, it is neede to set up an Admin account with the following Email: 'admin@parknet.com'
+When starting the program for the first time, you need to register an Admin account with the following Email: 'admin@parknet.com'
 
+- Ensure that the database connection strings in the project are configured correctly according to your local setup.
+>**Database Connection**:
+The application is configured to use a local SQL Server database via the connection string specified in the environment variable or in the _appsettings.json_ file. Ensure that the connection string is correctly configured to point to your local SQL Server instance. If you wish to use a different local database, you will need to modify the connection string in the _appsettings.json_ file accordingly.
+
+By following these steps, you should be able to clone the project, run it locally, and access the ParkNet application through your web browser.
 
 
 ## Technologies
@@ -63,8 +68,4 @@ To stop the application, press Ctrl + C in the terminal where the application is
 
 ## Additional Notes
 
-- Ensure that the database connection strings in the project are configured correctly according to your local setup.
->**Database Connection**:
-The application is configured to use a local SQL Server database via the connection string specified in the environment variable or in the _appsettings.json_ file. Ensure that the connection string is correctly configured to point to your local SQL Server instance. If you wish to use a different local database, you will need to modify the connection string in the _appsettings.json_ file accordingly.
 
-By following these steps, you should be able to clone the project, run it locally, and access the ParkNet application through your web browser.
